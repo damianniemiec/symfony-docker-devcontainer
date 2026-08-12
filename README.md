@@ -61,3 +61,5 @@ POSTGRES_VERSION=18
 The PostgreSQL 18 volume is mounted at `/var/lib/postgresql`, matching the
 layout required by the official PostgreSQL 18 image.
 
+## Credits
+Based on [dunglas/symfony-docker](https://github.com/dunglas/symfony-docker)

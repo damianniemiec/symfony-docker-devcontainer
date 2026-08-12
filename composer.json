@@ -1,5 +1,5 @@
 {
-    "name": "damian/symfony-docker-devcontainer",
+    "name": "damianniemiec/symfony-docker-devcontainer",
     "description": "Symfony WebApp boilerplate with FrankenPHP, Docker Compose and a resilient Dev Container workspace",
     "type": "project",
     "license": "MIT",
