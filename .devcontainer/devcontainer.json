@@ -1,0 +1,52 @@
+{
+    "name": "Symfony Workspace",
+    "dockerComposeFile": [
+        "../compose.yaml",
+        "../compose.override.yaml",
+        "compose.devcontainer.yaml"
+    ],
+    "service": "workspace",
+    "runServices": ["workspace"],
+    "workspaceFolder": "/app",
+    "remoteUser": "nonroot",
+    "updateRemoteUserUID": true,
+    "shutdownAction": "none",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22",
+            "nodeGypDependencies": true
+        }
+    },
+    "forwardPorts": [443, 5432, 8025],
+    "portsAttributes": {
+        "443": { "label": "Symfony HTTPS" },
+        "5432": { "label": "PostgreSQL" },
+        "8025": { "label": "Mailpit" }
+    },
+    "containerEnv": {
+        "COMPOSER_ALLOW_SUPERUSER": "1"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug",
+                "EditorConfig.EditorConfig",
+                "eamodio.gitlens",
+                "esbenp.prettier-vscode",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-pg",
+                "redhat.vscode-yaml",
+                "tamasfe.even-better-toml"
+            ],
+            "settings": {
+                "files.watcherExclude": {
+                    "**/var/**": true,
+                    "**/vendor/**/.git/**": true
+                },
+                "php.validate.executablePath": "/usr/local/bin/php"
+            }
+        }
+    }
+}

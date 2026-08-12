@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+compose_files=(
+	-f "$project_root/compose.yaml"
+	-f "$project_root/compose.override.yaml"
+	-f "$project_root/.devcontainer/compose.devcontainer.yaml"
+)
+
+compose_project="${COMPOSE_PROJECT_NAME:-}"
+if [[ -z "$compose_project" ]] && command -v docker >/dev/null 2>&1; then
+	compose_project="$(docker inspect --format '{{ index .Config.Labels "com.docker.compose.project" }}' "$(hostname)" 2>/dev/null || true)"
+fi
+
+if [[ -n "$compose_project" ]]; then
+	exec docker compose --project-name "$compose_project" "${compose_files[@]}" "$@"
+fi
+
+exec docker compose "${compose_files[@]}" "$@"
+
