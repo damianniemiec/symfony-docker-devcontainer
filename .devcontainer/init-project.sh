@@ -25,7 +25,7 @@ composer create-project "symfony/skeleton:${symfony_version}" "$temporary_dir/ap
 	--no-progress
 
 # Infrastructure belongs to this boilerplate, so Flex must not generate Compose fragments.
-composer --working-dir="$temporary_dir/app" config --json extra.symfony.docker false
+composer --working-dir="$temporary_dir/app" config --json extra.symfony.docker true
 composer --working-dir="$temporary_dir/app" require "php:^8.5" webapp \
 	--no-interaction \
 	--no-progress
