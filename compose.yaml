@@ -30,6 +30,27 @@ services:
         published: ${HTTP3_PORT:-443}
         protocol: udp
 
+# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
+###> symfony/mercure-bundle ###
+###< symfony/mercure-bundle ###
+
+###> doctrine/doctrine-bundle ###
+  database:
+    image: postgres:${POSTGRES_VERSION:-18}-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/postgresql:rw
+###< doctrine/doctrine-bundle ###
+
   redis:
     image: redis:8-bookworm
     restart: unless-stopped
@@ -45,8 +66,12 @@ services:
 volumes:
   caddy_data:
   caddy_config:
-  database_data:
   redis_data:
   var_data:
   vendor_data:
 
+###> symfony/mercure-bundle ###
+###< symfony/mercure-bundle ###
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###
