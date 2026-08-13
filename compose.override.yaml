@@ -6,12 +6,8 @@ services:
       context: .
       target: frankenphp_dev
     depends_on:
-      database:
-        condition: service_healthy
       redis:
         condition: service_healthy
-      mailpit:
-        condition: service_started
     volumes:
       - ./:/app
       - ./frankenphp/Caddyfile:/etc/frankenphp/Caddyfile:ro
