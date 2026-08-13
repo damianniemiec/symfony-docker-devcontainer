@@ -13,7 +13,7 @@ and writes to dedicated `var` and `vendor` volumes.
 After publishing this repository as a Composer project package:
 
 ```bash
-composer create-project damian/symfony-docker-devcontainer my-project
+composer create-project damianniemiec/symfony-docker-devcontainer my-project
 code my-project
 ```
 
