@@ -13,7 +13,7 @@ services:
       mailpit:
         condition: service_started
     volumes:
-      - ./:/app:ro
+      - ./:/app
       - ./frankenphp/Caddyfile:/etc/frankenphp/Caddyfile:ro
       - ./frankenphp/conf.d/20-app.dev.ini:/usr/local/etc/php/app.conf.d/20-app.dev.ini:ro
       - var_data:/app/var

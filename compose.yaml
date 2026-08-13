@@ -30,26 +30,6 @@ services:
         published: ${HTTP3_PORT:-443}
         protocol: udp
 
-  database:
-    image: postgres:${POSTGRES_VERSION:-18}-bookworm
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DB:-app} -U ${POSTGRES_USER:-app}"]
-      timeout: 5s
-      retries: 10
-      start_period: 20s
-    volumes:
-      - database_data:/var/lib/postgresql:rw
-    ports:
-      - name: postgres
-        target: 5432
-        published: ${POSTGRES_PORT:-5432}
-        protocol: tcp
-
   redis:
     image: redis:8-bookworm
     restart: unless-stopped
@@ -61,15 +41,6 @@ services:
       start_period: 5s
     volumes:
       - redis_data:/data
-
-  mailpit:
-    image: axllent/mailpit:latest
-    restart: unless-stopped
-    ports:
-      - name: mailpit-ui
-        target: 8025
-        published: ${MAILPIT_PORT:-8025}
-        protocol: tcp
 
 volumes:
   caddy_data:
