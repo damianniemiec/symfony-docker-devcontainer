@@ -10,7 +10,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      mailpit:
+      mailer:
         condition: service_started
     volumes:
       - ./:/app:ro

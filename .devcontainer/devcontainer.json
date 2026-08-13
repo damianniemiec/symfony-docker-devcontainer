@@ -10,7 +10,7 @@
     "workspaceFolder": "/app",
     "remoteUser": "nonroot",
     "updateRemoteUserUID": true,
-    "shutdownAction": "none",
+    "shutdownAction": "stopCompose",
     "features": {
         "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
             "moby": false
@@ -20,8 +20,9 @@
             "nodeGypDependencies": true
         }
     },
-    "forwardPorts": [443, 5432, 8025],
+    "forwardPorts": [80, 443, 5432, 8025],
     "portsAttributes": {
+        "80": { "label": "Symfony HTTP" },
         "443": { "label": "Symfony HTTPS" },
         "5432": { "label": "PostgreSQL" },
         "8025": { "label": "Mailpit" }
