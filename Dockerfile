@@ -7,6 +7,9 @@ FROM frankenphp_upstream AS frankenphp_base
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 WORKDIR /app
 
+# Nested volumes must have mountpoints before /app is bind-mounted read-only.
+RUN mkdir -p var vendor
+
 RUN <<-EOF
 	apt-get update
 	apt-get install -y --no-install-recommends \
