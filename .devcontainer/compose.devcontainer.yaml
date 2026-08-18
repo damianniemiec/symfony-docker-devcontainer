@@ -14,7 +14,7 @@ services:
       mailer:
         condition: service_started
     volumes:
-      - ./:/app
+      - ./:/app:ro
       - var_data:/app/var
       - vendor_data:/app/vendor
     environment:
