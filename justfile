@@ -8,10 +8,10 @@ init package_name="":
   bash .devcontainer/init-project.sh "{{ package_name }}"
 
 start:
-  bin/dev-compose up -d --build --wait php database redis mailpit
+  bin/dev-compose up -d --build --wait php database redis mailer
 
 stop:
-  bin/dev-compose stop php database redis mailpit
+  bin/dev-compose stop php database redis mailer
 
 restart:
   just stop
