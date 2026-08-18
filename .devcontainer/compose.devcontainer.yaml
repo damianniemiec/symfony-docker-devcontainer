@@ -20,7 +20,7 @@ services:
     environment:
       APP_ENV: ${APP_ENV:-dev}
       DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-18}&charset=utf8
-      MAILER_DSN: ${MAILER_DSN:-smtp://mailpit:1025}
+      MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       XDEBUG_MODE: ${XDEBUG_MODE:-develop,debug}
       XDEBUG_CONFIG: client_host=host.docker.internal

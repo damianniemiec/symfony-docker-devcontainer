@@ -45,7 +45,7 @@ cat >> "$project_root/.env" <<'EOF'
 
 ###> docker services ###
 DATABASE_URL="postgresql://app:!ChangeMe!@database:5432/app?serverVersion=18&charset=utf8"
-MAILER_DSN=smtp://mailpit:1025
+MAILER_DSN=smtp://mailer:1025
 REDIS_URL=redis://redis:6379
 ###< docker services ###
 EOF
